@@ -9,7 +9,7 @@
 - 🔭 I’m currently learning Next Js.
 - 🌱 I like competitive coding.
 - 👯 I’m looking to collaborate on Web development
-- 💬 Let's talk Python, TypeScript
+- 💬 Let's talk Python
 - ⚡ Fun fact: who wants hugs and kisses, I love bugs and fixes 
 <!-- - 🤔 I’m looking for help with project ideas -->
 <!-- - 📫 How to reach me: ... -->
