@@ -36,6 +36,10 @@
 
 <p>
   <img align="left" src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=dark" alt="GitHub Stats" />
+
+
+
+  
   <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=dark" alt="Top Languages" />
 
  
