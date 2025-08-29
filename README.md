@@ -48,12 +48,7 @@
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=pranavrbm&theme=react-dark&hide_border=true"/>
 </p>
 
----
 
-## 🐍 Contribution Snake
-<p align="center">
-  <img src="https://github.com/pranavrbm/pranavrbm/blob/output/github-contribution-grid-snake.svg" alt="snake animation"/>
-</p>
 
 
 ---
