@@ -52,7 +52,7 @@
 
 ## 🐍 Contribution Snake
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=pranavrbm&theme=dark&hide_border=true" alt="GitHub Streak"/>
+  <img src="https://github.com/pranavrbm/pranavrbm/blob/output/github-contribution-grid-snake.svg" alt="snake animation"/>
 </p>
 
 
