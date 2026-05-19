@@ -99,7 +99,7 @@ function App() {
 							<span className="font-bold text-xl">Based In</span>
 							<p className="text-gray-400">Mangalore / Bengaluru</p>
 							<div className="mt-4 flex gap-3">
-								<a href="https://linkedin.com/in/pranavrbm" className="icon-btn"><Linkedin size={20} /></a>
+								<a href="https://www.linkedin.com/in/pranavrbm/" className="icon-btn"><Linkedin size={20} /></a>
 								<a href="https://github.com/pranavrbm" className="icon-btn"><Github size={20} /></a>
 							</div>
 						</div>
@@ -216,7 +216,7 @@ function App() {
 				<footer className="mt-20 text-center border-t border-white/5 pt-10">
 					<div className="flex justify-center gap-6 mb-8">
 						<a href="mailto:pranavrbm@gmail.com" className="hover:text-purple-400 transition-colors"><Mail /></a>
-						<a href="https://linkedin.com/in/pranavrbm" className="hover:text-blue-400 transition-colors"><Linkedin /></a>
+						<a href="https://www.linkedin.com/in/pranavrbm/" className="hover:text-blue-400 transition-colors"><Linkedin /></a>
 						<a href="https://github.com/pranavrbm" className="hover:text-gray-400 transition-colors"><Github /></a>
 					</div>
 					<p className="text-xs text-gray-600">© {new Date().getFullYear()} Pranav R Bhat • High-Impact Intelligence</p>
