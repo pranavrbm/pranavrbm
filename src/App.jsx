@@ -263,6 +263,15 @@ function App() {
 				</div>
 			</section>
 
+			<section className="section" id="github-stats">
+				<h2>GitHub Statistics</h2>
+				<div className="stats-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
+					<img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=dark&hide_border=true" alt="GitHub Stats" height="165px"/>
+					<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=dark&hide_border=true" alt="Top Languages" height="165px"/>
+					<img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=dark&hide_border=true" alt="GitHub Streak" height="165px"/>
+				</div>
+			</section>
+
 			<section
 				className="section"
 				id="languages">

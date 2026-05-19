@@ -65,6 +65,10 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=dark&hide_border=true" height="165px"/>
 </p>
 
+<p align="center">
+  <img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=dark&hide_border=true" alt="GitHub Streak"/>
+</p>
+
 ---
 
 ## 🌐 Let's Connect
