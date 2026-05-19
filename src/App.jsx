@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion as Motion, useAnimation, useInView } from "framer-motion";
 import { 
 	Mail, 
 	ExternalLink, 
@@ -52,6 +53,61 @@ const Linkedin = ({ size = 24, ...props }) => (
 	</svg>
 );
 
+const TypewriterText = ({ text, delay = 0 }) => {
+	const controls = useAnimation();
+	const ref = useRef(null);
+	const inView = useInView(ref, { once: true });
+
+	useEffect(() => {
+		if (inView) {
+			controls.start(i => ({
+				opacity: 1,
+				transition: { delay: delay + i * 0.05 }
+			}));
+		}
+	}, [inView, controls, delay]);
+
+	return (
+		<span ref={ref}>
+			{text.split("").map((char, i) => (
+				<Motion.span
+					key={i}
+					custom={i}
+					initial={{ opacity: 0 }}
+					animate={controls}
+				>
+					{char}
+				</Motion.span>
+			))}
+		</span>
+	);
+};
+
+const BentoItem = ({ children, className, variants, ...props }) => {
+	const itemRef = useRef(null);
+
+	const handleMouseMove = (e) => {
+		if (!itemRef.current) return;
+		const rect = itemRef.current.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+		itemRef.current.style.setProperty("--mouse-x", `${x}px`);
+		itemRef.current.style.setProperty("--mouse-y", `${y}px`);
+	};
+
+	return (
+		<Motion.div
+			ref={itemRef}
+			className={`bento-item ${className}`}
+			variants={variants}
+			onMouseMove={handleMouseMove}
+			{...props}
+		>
+			{children}
+		</Motion.div>
+	);
+};
+
 function App() {
 	const projects = [
 		{
@@ -88,13 +144,13 @@ function App() {
 		hidden: { opacity: 0 },
 		show: {
 			opacity: 1,
-			transition: { staggerChildren: 0.1 }
+			transition: { staggerChildren: 0.1, delayChildren: 0.3 }
 		}
 	};
 
 	const item = {
 		hidden: { y: 20, opacity: 0 },
-		show: { y: 0, opacity: 1 }
+		show: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
 	};
 
 	return (
@@ -102,17 +158,22 @@ function App() {
 			<div className="mesh-gradient" />
 			
 			<main className="portfolio">
-				<motion.div 
+				<Motion.div 
 					className="bento-grid"
 					variants={container}
 					initial="hidden"
 					animate="show"
 				>
 					{/* HERO CARD */}
-					<motion.div variants={item} className="bento-item hero-card">
-						<p className="eyebrow flex items-center gap-2">
+					<BentoItem variants={item} className="hero-card">
+						<Motion.p 
+							className="eyebrow flex items-center gap-2"
+							initial={{ opacity: 0, x: -10 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ delay: 0.5 }}
+						>
 							<Sparkles size={16} className="text-purple-500" /> AI & Data Science Specialist
-						</p>
+						</Motion.p>
 						<h1>Designing <span className="gradient-text">Intelligent</span> <br/>Architectures.</h1>
 						<p className="hero-copy">
 							Orchestrating production-grade ML pipelines, RAG systems, and full-stack solutions with a focus on impact and scalability.
@@ -125,41 +186,48 @@ function App() {
 								<Download size={18} /> Resume
 							</a>
 						</div>
-					</motion.div>
+					</BentoItem>
 
 					{/* STATUS CARD */}
-					<motion.div variants={item} className="bento-item stats-card">
+					<BentoItem variants={item} className="stats-card">
 						<div className="flex flex-col items-center gap-2">
-							<MapPin className="text-red-400" size={32} />
-							<span className="font-bold text-xl">Based In</span>
+							<div className="relative">
+								<MapPin className="text-red-400 animate-bounce" size={32} />
+								<div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-red-400/20 blur-sm rounded-full" />
+							</div>
+							<span className="font-bold text-xl mt-2">Based In</span>
 							<p className="text-gray-400">Mangalore / Bengaluru</p>
-							<div className="mt-4 flex gap-3">
-								<a href="https://www.linkedin.com/in/pranavrbm/" className="icon-btn"><Linkedin size={20} /></a>
-								<a href="https://github.com/pranavrbm" className="icon-btn"><Github size={20} /></a>
+							<div className="mt-6 flex gap-3">
+								<a href="https://www.linkedin.com/in/pranavrbm/" className="icon-btn" title="LinkedIn"><Linkedin size={20} /></a>
+								<a href="https://github.com/pranavrbm" className="icon-btn" title="GitHub"><Github size={20} /></a>
 							</div>
 						</div>
-					</motion.div>
+					</BentoItem>
 
 					{/* TERMINAL BIO */}
-					<motion.div variants={item} className="bento-item terminal-card">
+					<BentoItem variants={item} className="terminal-card">
 						<div className="terminal-header">
 							<div className="dot red" />
 							<div className="dot yellow" />
 							<div className="dot green" />
 						</div>
-						<div className="text-sm leading-relaxed">
-							<p className="text-blue-400">$ whoami</p>
-							<p className="text-gray-300">pranav_r_bhat (AI_Researcher & Dev)</p>
-							<p className="text-blue-400 mt-2">$ current_focus</p>
-							<p className="text-gray-300">["LLM_Orchestration", "RAG_Systems", "Scalable_ETL"]</p>
-							<p className="text-blue-400 mt-2">$ achievements</p>
-							<p className="text-gray-300">Published @ IEEE DISCOVER 2024</p>
-							<p className="text-green-400 mt-2">_</p>
+						<div className="text-sm leading-relaxed font-mono">
+							<p className="text-blue-400">$ <TypewriterText text="whoami" delay={1} /></p>
+							<p className="text-gray-300"><TypewriterText text="pranav_r_bhat (AI_Researcher & Dev)" delay={1.5} /></p>
+							<p className="text-blue-400 mt-2">$ <TypewriterText text="current_focus" delay={3} /></p>
+							<p className="text-gray-300"><TypewriterText text='["LLM_Orchestration", "RAG_Systems", "Scalable_ETL"]' delay={3.5} /></p>
+							<p className="text-blue-400 mt-2">$ <TypewriterText text="achievements" delay={5.5} /></p>
+							<p className="text-green-400 mt-1"><TypewriterText text="> Published @ IEEE DISCOVER 2024" delay={6} /></p>
+							<Motion.span 
+								animate={{ opacity: [1, 0] }} 
+								transition={{ repeat: Infinity, duration: 0.8 }}
+								className="inline-block w-2 h-4 bg-green-400 ml-1 align-middle"
+							/>
 						</div>
-					</motion.div>
+					</BentoItem>
 
 					{/* RESEARCH HIGHLIGHT */}
-					<motion.div variants={item} className="bento-item research-card">
+					<BentoItem variants={item} className="research-card">
 						<div className="max-w-2xl">
 							<div className="flex items-center gap-2 mb-4">
 								<Quote className="text-purple-400" />
@@ -172,38 +240,38 @@ function App() {
 							</a>
 						</div>
 						<div className="hidden lg:block">
-							<div className="p-8 bg-white/5 rounded-3xl border border-white/10">
+							<div className="p-8 bg-white/5 rounded-3xl border border-white/10 group-hover:border-purple-500/30 transition-colors">
 								<Cpu size={80} className="text-purple-500 animate-pulse" />
 							</div>
 						</div>
-					</motion.div>
+					</BentoItem>
 
 					{/* PROJECT CARDS */}
-					{projects.map((p, idx) => (
-						<motion.article 
+					{projects.map((p) => (
+						<BentoItem 
 							key={p.title}
 							variants={item}
-							className="bento-item project-card-v2 group"
-							whileHover={{ scale: 1.02 }}
+							className="project-card-v2 group"
+							whileHover={{ scale: 1.02, y: -5 }}
 						>
 							<div className="flex justify-between items-start mb-6">
 								<div className="p-3 bg-white/5 rounded-2xl group-hover:bg-purple-500/20 transition-colors">
 									{p.icon}
 								</div>
-								<a href={p.link} className="text-gray-500 hover:text-white"><ExternalLink size={20} /></a>
+								<a href={p.link} className="text-gray-500 hover:text-white transition-colors"><ExternalLink size={20} /></a>
 							</div>
-							<h3 className="text-xl font-bold mb-2">{p.title}</h3>
-							<p className="text-gray-400 text-sm mb-6">{p.desc}</p>
+							<h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{p.title}</h3>
+							<p className="text-gray-400 text-sm mb-6 line-clamp-2">{p.desc}</p>
 							<div className="flex flex-wrap gap-2">
 								{p.stack.map(s => (
 									<span key={s} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-wider">{s}</span>
 								))}
 							</div>
-						</motion.article>
+						</BentoItem>
 					))}
 
 					{/* TECH TOOLBOX */}
-					<motion.div variants={item} className="bento-item toolbox-card">
+					<BentoItem variants={item} className="toolbox-card">
 						<div className="flex items-center gap-3 mb-6">
 							<Terminal size={24} className="text-emerald-400" />
 							<h3 className="text-xl font-bold">Tech Stack</h3>
@@ -218,10 +286,10 @@ function App() {
 								<p className="text-xs font-medium text-gray-300">Docker, FastAPI, Next.js, PostgreSQL, BigQuery</p>
 							</div>
 						</div>
-					</motion.div>
+					</BentoItem>
 
 					{/* EXPERIENCE SUMMARY */}
-					<motion.div variants={item} className="bento-item project-card-v2">
+					<BentoItem variants={item} className="project-card-v2">
 						<div className="flex items-center gap-3 mb-6">
 							<Briefcase size={24} className="text-blue-400" />
 							<h3 className="text-xl font-bold">Professional Path</h3>
@@ -236,11 +304,11 @@ function App() {
 								<p className="text-[10px] text-gray-500">2025 • Clinical Predictive Modeling</p>
 							</div>
 						</div>
-					</motion.div>
-				</motion.div>
+					</BentoItem>
+				</Motion.div>
 
-				<section className="mt-20">
-					<h2 className="text-center mb-10 text-2xl font-bold">GitHub Intelligence</h2>
+				<section id="projects" className="mt-24">
+					<h2 className="text-center mb-12 text-3xl font-bold">GitHub Intelligence</h2>
 					<div className="stats-grid">
 						<img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=transparent&hide_border=true&title_color=A020F0&icon_color=A020F0&text_color=fff&bg_color=00000000" alt="Stats" />
 						<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=transparent&hide_border=true&title_color=A020F0&text_color=fff&bg_color=00000000" alt="Langs" />
@@ -248,13 +316,13 @@ function App() {
 					</div>
 				</section>
 
-				<footer className="mt-20 text-center border-t border-white/5 pt-10">
-					<div className="flex justify-center gap-6 mb-8">
-						<a href="mailto:pranavrbm@gmail.com" className="hover:text-purple-400 transition-colors"><Mail /></a>
-						<a href="https://www.linkedin.com/in/pranavrbm/" className="hover:text-blue-400 transition-colors"><Linkedin /></a>
-						<a href="https://github.com/pranavrbm" className="hover:text-gray-400 transition-colors"><Github /></a>
+				<footer className="mt-24 text-center border-t border-white/5 pt-12 pb-8">
+					<div className="flex justify-center gap-8 mb-8">
+						<a href="mailto:pranavrbm@gmail.com" className="text-gray-400 hover:text-purple-400 transition-colors"><Mail size={24} /></a>
+						<a href="https://www.linkedin.com/in/pranavrbm/" className="text-gray-400 hover:text-blue-400 transition-colors"><Linkedin size={24} /></a>
+						<a href="https://github.com/pranavrbm" className="text-gray-400 hover:text-white transition-colors"><Github size={24} /></a>
 					</div>
-					<p className="text-xs text-gray-600">© {new Date().getFullYear()} Pranav R Bhat • High-Impact Intelligence</p>
+					<p className="text-xs text-gray-600 font-medium tracking-widest uppercase">© {new Date().getFullYear()} Pranav R Bhat • High-Impact Intelligence</p>
 				</footer>
 			</main>
 		</div>
