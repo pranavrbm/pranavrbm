@@ -109,6 +109,23 @@ const BentoItem = ({ children, className, variants, ...props }) => {
 };
 
 function App() {
+	useEffect(() => {
+		const observerOptions = {
+			threshold: 0.1
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("active");
+				}
+			});
+		}, observerOptions);
+
+		document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+		return () => observer.disconnect();
+	}, []);
+
 	const projects = [
 		{
 			title: "Water Crisis AI",
@@ -307,16 +324,22 @@ function App() {
 					</BentoItem>
 				</Motion.div>
 
-				<section id="projects" className="mt-24">
+				<section id="projects" className="mt-24 reveal">
 					<h2 className="text-center mb-12 text-3xl font-bold">GitHub Intelligence</h2>
 					<div className="stats-grid">
-						<img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=transparent&hide_border=true&title_color=A020F0&icon_color=A020F0&text_color=fff&bg_color=00000000" alt="Stats" />
-						<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=transparent&hide_border=true&title_color=A020F0&text_color=fff&bg_color=00000000" alt="Langs" />
-						<img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=transparent&hide_border=true&stroke=A020F0&ring=A020F0&fire=A020F0&currStreakNum=fff&background=00000000" alt="Streak" />
+						<div className="reveal">
+							<img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=transparent&hide_border=true&title_color=A020F0&icon_color=A020F0&text_color=fff&bg_color=00000000" alt="Stats" />
+						</div>
+						<div className="reveal">
+							<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=transparent&hide_border=true&title_color=A020F0&text_color=fff&bg_color=00000000" alt="Langs" />
+						</div>
+						<div className="reveal">
+							<img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=transparent&hide_border=true&stroke=A020F0&ring=A020F0&fire=A020F0&currStreakNum=fff&background=00000000" alt="Streak" />
+						</div>
 					</div>
 				</section>
 
-				<footer className="mt-24 text-center border-t border-white/5 pt-12 pb-8">
+				<footer className="mt-24 text-center border-t border-white/5 pt-12 pb-8 reveal">
 					<div className="flex justify-center gap-8 mb-8">
 						<a href="mailto:pranavrbm@gmail.com" className="text-gray-400 hover:text-purple-400 transition-colors"><Mail size={24} /></a>
 						<a href="https://www.linkedin.com/in/pranavrbm/" className="text-gray-400 hover:text-blue-400 transition-colors"><Linkedin size={24} /></a>
