@@ -149,9 +149,15 @@
 	margin-bottom: 10px;
 }
 
-.project-card span {
-	font-size: 0.9rem;
+.project-card .stack-tag {
+	display: inline-block;
+	font-size: 0.85rem;
 	color: var(--accent);
+	padding: 2px 8px;
+	background: var(--accent-bg);
+	border: 1px solid var(--accent-border);
+	border-radius: 4px;
+	margin-bottom: 8px;
 }
 
 .project-link {
