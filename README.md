@@ -1,78 +1,60 @@
-# Pranav R Bhat 👋
+# <p align="center">Pranav R Bhat</p>
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=A020F0&center=true&vCenter=true&width=435&lines=AI+%26+Data+Science+Specialist;Published+IEEE+Researcher;Full-Stack+ML+Engineer;RAG+Orchestrator" alt="Typing SVG" />
+</p>
 
 <p align="center">
-  <b>AI & Data Science Specialist | Published Researcher | Full-Stack Developer</b><br/>
-  Mangalore / Bengaluru • <a href="mailto:pranavrbm@gmail.com">pranavrbm@gmail.com</a> • <a href="https://linkedin.com/in/pranavrbm">LinkedIn</a>
+  <a href="https://linkedin.com/in/pranavrbm"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="mailto:pranavrbm@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="https://ieeexplore.ieee.org/document/10750586"><img src="https://img.shields.io/badge/IEEE_Xplore-00629B?style=for-the-badge&logo=ieee&logoColor=white" /></a>
 </p>
 
 ---
 
-## 🚀 About Me
-- 🎓 **B.Tech in AI & Data Science** (2022-2026) at NMAM Institute of Technology.
-- 🔬 **Published Researcher**: First-author of "Identifying Deceptive AI Reviews" (IEEE DISCOVER 2024).
-- 🛠️ **AI/ML Specialist**: Hands-on experience building RAG systems, LLM-powered automation, and production-grade ML pipelines.
-- 🌐 **Full-Stack Developer**: Experienced in building scalable web portals and microservices using Astro, React, and FastAPI.
-- ⚡ **Current Focus**: Scaling local LLM inference and exploring vector databases for industrial automation.
+### 🔬 Featured Research: AI Deception Detection
+**[Identifying Deceptive AI Reviews: A Machine Learning Approach](https://ieeexplore.ieee.org/document/10750586)**
+*Published at IEEE DISCOVER 2024*
+- Engineered an end-to-end NLP pipeline for classifying AI-generated deceptive text.
+- Leveraged deep learning classifiers and TF-IDF feature engineering.
+- **Impact:** Achieved 92% accuracy, cited as a benchmark for LLM-generated fake review detection.
 
 ---
 
-## 🛠️ Technical Stack
-<p align="center">
-  <b>AI/ML & Data Science</b><br/>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white" />
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" />
-  <img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white" />
-  <img src="https://img.shields.io/badge/LangChain-121212?style=flat-square&logo=chainlink&logoColor=white" />
-</p>
+### 💼 Industrial Impact
+#### **AI & Web Development Intern | Organic Mandya** *(2026)*
+- **RAG Orchestration:** Deployed Llama 3.1:8b via Ollama with ChromaDB-backed RAG for automated, brand-authentic review responses.
+- **Data Engineering:** Migrated full ETL pipelines (BigQuery, Shopify API, Odoo) to high-performance Linux VPS.
+- **Full-Stack:** Built and optimized the "Know Your Food" portal using Astro v6 and Tailwind CSS v4.
 
-<p align="center">
-  <b>Web & Backend</b><br/>
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Astro-BC52EE?style=flat-square&logo=astro&logoColor=white" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
-</p>
-
-<p align="center">
-  <b>DevOps & Tools</b><br/>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
-  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" />
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
-  <img src="https://img.shields.io/badge/Claude_Code-D97706?style=flat-square" />
-</p>
+#### **Data Science Intern | Personifwy** *(2025)*
+- Developed NLP classification models for Hate Speech Detection and clinical mortality prediction using XGBoost/SHAP.
 
 ---
 
-## 💼 Professional Experience
-- **AI & Web Development Intern @ Organic Mandya** (Mar 2026 – May 2026)
-  - Built RAG-backed AI review management using Llama 3.1 & Google Business API.
-  - Deployed "Know Your Food" portal (Astro v6, Tailwind v4).
-- **Data Science Intern @ Personifwy** (Jul 2025 – Sep 2025)
-  - Developed ML models for Hate Speech Detection and Clinical Mortality Prediction.
-- **Software Developer Intern @ Krishitantra** (Jun 2024 – Aug 2024)
-  - Engineered agricultural image processing pipelines and scalable crop-analysis web apps.
+### 🛠️ Technical Ecosystem
+
+| Domain | Technologies |
+| :--- | :--- |
+| **AI / ML** | PyTorch, TensorFlow, Scikit-learn, HuggingFace, XGBoost, CatBoost |
+| **Generative AI** | Llama 3.1, Gemini API, RAG, LangChain, ChromaDB, Ollama |
+| **Backend & APIs** | FastAPI, Django, Spring Boot, Node.js, RESTful Microservices |
+| **Frontend** | React, Next.js (T3 Stack), Astro v6, Tailwind CSS v4 |
+| **Data & DevOps** | BigQuery, PostgreSQL, MongoDB, Docker, Linux VPS, GitHub Actions |
 
 ---
 
-## 📊 GitHub Stats
+### 📊 Engineering Metrics
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&count_private=true&show_icons=true&theme=dark&hide_border=true" height="165px"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=dark&hide_border=true" height="165px"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=pranavrbm&show_icons=true&theme=transparent&hide_border=true&title_color=A020F0&icon_color=A020F0&text_color=777" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pranavrbm&layout=compact&theme=transparent&hide_border=true&title_color=A020F0&text_color=777" width="48%" />
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=dark&hide_border=true" alt="GitHub Streak"/>
+  <img src="https://streak-stats.demolab.com/?user=pranavrbm&theme=transparent&hide_border=true&stroke=A020F0&ring=A020F0&fire=A020F0&currStreakNum=A020F0" width="100%" />
 </p>
 
 ---
 
-## 🌐 Let's Connect
 <p align="center">
-  <a href="https://linkedin.com/in/pranavrbm"><img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin"></a>
-  <a href="mailto:pranavrbm@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
+  <i>"Designing the future of Machine Intelligence."</i>
 </p>
