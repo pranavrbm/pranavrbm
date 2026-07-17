@@ -1,0 +1,145 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { MatrixRain } from './matrix-rain'
+
+type Line = {
+  prompt?: string
+  text: string
+  output?: boolean
+}
+
+const script: Line[] = [
+  { prompt: '$', text: 'whoami' },
+  { text: 'Pranav R Bhat — AI & Data Science Engineer', output: true },
+  { prompt: '$', text: 'cat role.txt' },
+  {
+    text: 'I build ML models, automation pipelines, and REST APIs — from backend to data to deployment.',
+    output: true,
+  },
+  { prompt: '$', text: 'ls ./stack' },
+  { text: 'python  pytorch  fastapi  langchain  docker  gcp  postgres', output: true },
+  { prompt: '$', text: 'cat ./highlights' },
+  {
+    text: '2x IEEE published researcher · KSCST research grant · B.Tech AI & DS 2026',
+    output: true,
+  },
+  { prompt: '$', text: './status --now' },
+  { text: '[ ONLINE ] open to new opportunities', output: true },
+]
+
+export function TerminalHero() {
+  const [rendered, setRendered] = useState<Line[]>([])
+  const [current, setCurrent] = useState('')
+  const [lineIdx, setLineIdx] = useState(0)
+  const [charIdx, setCharIdx] = useState(0)
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    if (lineIdx >= script.length) {
+      setDone(true)
+      return
+    }
+    const line = script[lineIdx]
+
+    // output lines appear quickly; commands type char-by-char
+    if (line.output) {
+      const t = setTimeout(() => {
+        setRendered((prev) => [...prev, line])
+        setLineIdx((i) => i + 1)
+      }, 260)
+      return () => clearTimeout(t)
+    }
+
+    if (charIdx < line.text.length) {
+      const t = setTimeout(() => {
+        setCurrent(line.text.slice(0, charIdx + 1))
+        setCharIdx((c) => c + 1)
+      }, 55)
+      return () => clearTimeout(t)
+    }
+
+    const t = setTimeout(() => {
+      setRendered((prev) => [...prev, line])
+      setCurrent('')
+      setCharIdx(0)
+      setLineIdx((i) => i + 1)
+    }, 400)
+    return () => clearTimeout(t)
+  }, [lineIdx, charIdx])
+
+  const typingLine = lineIdx < script.length ? script[lineIdx] : null
+  const showTypingCommand = typingLine && !typingLine.output
+
+  return (
+    <section
+      id="top"
+      className="scanlines relative flex min-h-screen items-center overflow-hidden grid-bg"
+    >
+      <MatrixRain />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 md:px-6">
+        <p className="mb-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+          {'// initializing session'}
+        </p>
+        <div className="overflow-hidden rounded-lg border border-primary/25 bg-card/70 backdrop-blur-sm box-glow">
+          <div className="flex items-center gap-2 border-b border-border bg-secondary/50 px-4 py-3">
+            <span className="size-3 rounded-full bg-destructive/80" aria-hidden="true" />
+            <span className="size-3 rounded-full bg-chart-3/80" aria-hidden="true" />
+            <span className="size-3 rounded-full bg-primary/80" aria-hidden="true" />
+            <span className="ml-2 text-xs text-muted-foreground">
+              root@dev: ~/portfolio
+            </span>
+          </div>
+
+          <div className="min-h-[280px] space-y-2 p-5 text-sm leading-relaxed md:text-base">
+            {rendered.map((line, i) =>
+              line.output ? (
+                <p key={i} className="pl-4 text-foreground">
+                  <span className="text-muted-foreground">{'> '}</span>
+                  {line.text}
+                </p>
+              ) : (
+                <p key={i} className="text-primary text-glow">
+                  <span className="text-muted-foreground">{line.prompt} </span>
+                  {line.text}
+                </p>
+              ),
+            )}
+
+            {showTypingCommand && (
+              <p className="text-primary text-glow">
+                <span className="text-muted-foreground">{typingLine?.prompt} </span>
+                {current}
+                <span className="cursor-blink">▋</span>
+              </p>
+            )}
+
+            {done && (
+              <p className="text-primary text-glow">
+                <span className="text-muted-foreground">$ </span>
+                <span className="cursor-blink">▋</span>
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a
+            href="#projects"
+            className="rounded border border-primary bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            view_projects()
+          </a>
+          <a
+            href="#contact"
+            className="rounded border border-primary/40 px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-accent"
+          >
+            get_in_touch()
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
